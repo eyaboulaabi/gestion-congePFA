@@ -1,0 +1,95 @@
+.with-spacing {
+    margin-bottom: 10px; /* Ajustez la valeur selon vos besoins */
+}
+.text-blue {
+    color: blue;
+}
+
+h4 {
+    color: blue;
+}
+
+.icon-cell {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px; /* Ajustez la largeur selon vos besoins */
+}
+
+.icon {
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.icon.dw-eye {
+    color: #3498db; /* Couleur pour l'icône "dw-eye" */
+}
+
+.icon.dw-edit2 {
+    color: #27ae60; /* Couleur pour l'icône "dw-edit2" */
+}
+
+.icon.dw-delete-2 {
+    color: #e74c3c; /* Couleur pour l'icône "dw-delete-3" */
+}
+
+.icon.dw-eye:hover {
+    color: #2980b9; /* Couleur au survol de l'icône "dw-eye" */
+}
+
+.icon.dw-edit2:hover {
+    color: #27ae60; /* Couleur au survol de l'icône "dw-edit2" */
+}
+
+.icon.dw-delete-2:hover {
+    color: #c0392b; /* Couleur au survol de l'icône "dw-delete-3" */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+/* Style pour l'en-tête du tableau */
+thead th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Style pour les cellules du tableau */
+tbody td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+/* Style pour les lignes de tableau alternées */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style pour mettre en évidence les lignes au survol */
+tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+/*************************************/
+/*********************************************/
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.pagination-button {
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.page-info {
+    font-size: 14px;
+    margin: 0 10px;
+    color: #777;
+}

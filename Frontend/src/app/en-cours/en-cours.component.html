@@ -1,0 +1,195 @@
+<html>
+
+<head>
+    <!-- Basic Page Info -->
+    <meta charset="utf-8">
+    <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">sw
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-119386393-1');
+    </script>
+</head>
+
+<body>
+    <div class="pre-loader">
+        <div class="pre-loader-box">
+            <div class="loader-logo"><img src="assets/vendors/images/deskapp-logo.svg" alt=""></div>
+            <div class='loader-progress' id="progress_div">
+                <div class='bar' id='bar1'></div>
+            </div>
+            <div class='percent' id='percent1'>0%</div>
+            <div class="loading-text">
+                Loading...
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Liste des demandes</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 class="text-blue h4"><strong>Tableau des demandes en cours</strong></h4>
+                    </div>
+                    <div _ngcontent-ng-c2380787436="" class="pb-20">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                            <button class="btn btn-primary mr-2" tabindex="0" aria-controls="DataTables_Table_0"
+                                type="button" data-color="#ffffff" [routerLink]="['/demande']">
+                                <span>
+                                    <i class="icon-copy fa fa-newspaper-o" aria-hidden="true"></i>
+                                    <strong> Toutes</strong>
+                                </span>
+                            </button>
+
+                            <button class="btn btn-warning mr-2" tabindex="0" aria-controls="DataTables_Table_0"
+                                type="button" data-color="#ffffff">
+                                <span>
+                                    <i class="icon-copy fa fa-hourglass-end" aria-hidden="true"></i>
+                                    <strong> En cours</strong>
+                                </span>
+                            </button>
+                            <table >
+                                <thead>
+                                    <tr>
+                                        <th>NomSalarie</th>
+                                        <th>DateDebut</th>
+                                        <th>DateFin</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Etat</th>
+
+                                     
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let demande of pagedDemandes">
+                                        <td>{{demande.nomSalarie}}</td>
+                                        <td>{{demande.dateDebut}}</td>
+                                        <td>{{demande.dateFin}}</td>
+                                        <td>{{demande.type}}</td>
+                                        <td>{{demande.description}}</td>
+                                        <td>{{demande.etat}}</td>
+                                        
+                                       
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                <div class="pagination-controls">
+                                    <button class="btn btn-primary pagination-button" (click)="pageChanged(currentPage - 1)" [disabled]="currentPage === 1">
+                                        <i class="fas fa-chevron-left" ></i> Previous
+                                    </button>
+                                    <div class="page-info">Page {{ currentPage }}  {{ totalPages }}</div>
+                                    <button class="btn btn-primary pagination-button" (click)="pageChanged(currentPage + 1)" [disabled]="currentPage === totalPages">
+                                        Next <i class="fas fa-chevron-right" ></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 *ngIf="showUpdate" class="modal-title" id="exampleModalLabel"><strong>Modifier demande</strong></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="doSomething()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nom salarie</label>
+                        <input type="name" formControlName="nomSalarie" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Veuillez saisir votre nom de salarie">
+                        <small *ngIf="formValue.get('nomSalarie')?.invalid && formValue.get('nomSalarie')?.touched"
+                            class="text-danger">Le nom est obligatoire</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateDebut" class="form-label">Date de debut</label>
+                        <input type="date" formControlName="dateDebut" class="form-control" id="dateDebut"
+                            placeholder="Veuillez entrer la date de debut de congé">
+                        <small *ngIf="formValue.get('dateDebut')?.invalid && formValue.get('dateDebut')?.touched"
+                            class="text-danger">La date de debut est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="dateFin" class="form-label">Date du fin</label>
+                        <input type="date" formControlName="dateFin" class="form-control" id="dateFin"
+                            placeholder="Veuillez entrer la date de fin de congé">
+                        <small *ngIf="formValue.get('dateFin')?.invalid && formValue.get('dateFin')?.touched"
+                            class="text-danger">la date du fin est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Type</label>
+                        <input type="type" formControlName="type" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Veuillez entrer votre type de congé">
+                        <small *ngIf="formValue.get('type')?.invalid && formValue.get('type')?.touched"
+                            class="text-danger">Le type est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Description</label>
+                        <input type="description" formControlName="description" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Veuillez entrer votre description de congé">
+                        <small *ngIf="formValue.get('description')?.invalid && formValue.get('description')?.touched"
+                            class="text-danger">La description est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Etat</label>
+                        <!-- Set the value of etat to "en cours" and make it readonly -->
+                        <input type="etat" formControlName="etat" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="En cours" value="En cours" readonly>
+                        <small *ngIf="formValue.get('etat')?.invalid && formValue.get('etat')?.touched"
+                            class="text-danger"></small>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="showUpdate" type="button" class="btn btn-warning"
+                    (click)="editDemande()">Modifier</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="doSomething()">Annuler</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-dashboard></app-dashboard>

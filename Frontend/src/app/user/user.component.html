@@ -1,0 +1,131 @@
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Tableau des utilisateurs</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- Simple Datatable start -->
+            <div class="card-box mb-30 p-20">
+                <div class="pd-20">
+                    <h4 class="text-blue h4"><strong>Tableau des utilisateurs</strong></h4>
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-success" (click)="openModal()" (click)="add()">
+                        <i class="icon-copy fa fa-user-plus" aria-hidden="true"></i>
+                        <strong> Ajouter utilisateur</strong>
+                    </button> <br>
+                </div>
+                <div class="pb-20">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Mot de passe</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let salarie of salaries">
+                                <td>{{salarie.username}}</td>
+                                <td>{{salarie.email}}</td>
+                                <td>{{salarie.password}}</td>
+                                <td>{{salarie.role}}</td>
+                                <td class="icon-cell">
+                                    <i class="icon dw dw-eye"></i>
+                                    <i class="icon dw dw-edit2" (click)="openModal()" (click)="edit(salarie)"></i>
+                                    <i class="icon dw dw-delete-3" (click)="deleteSalarie(salarie)"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                <div class="pagination-controls">
+                    <button class="btn btn-primary pagination-button" (click)="pageChanged(currentPage - 1)" [disabled]="currentPage === 1">
+                        <i class="fas fa-chevron-left" ></i> Previous
+                    </button>
+                    <div class="page-info">Page {{ currentPage }}  {{ totalPages }}</div>
+                    <button class="btn btn-primary pagination-button" (click)="pageChanged(currentPage + 1)" [disabled]="currentPage === totalPages">
+                        Next <i class="fas fa-chevron-right" ></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--Modal ajouter demande -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 *ngIf="showAdd" class="modal-title" id="exampleModalLabel"><strong>Ajouter utilisateur</strong>
+                </h1>
+                <h1 *ngIf="showUpdate" class="modal-title" id="exampleModalLabel"><strong>Modifier utilisateur</strong>
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="doSomething()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nom</label>
+                        <input type="name" formControlName="username" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Veuillez saisir votre nom">
+                        <small *ngIf="formValue.get('username')?.invalid && formValue.get('username')?.touched"
+                            class="text-danger">Le nom est obligatoire</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Veuillez entrer votre adresse e-mail">
+                        <small *ngIf="formValue.get('email')?.invalid && formValue.get('email')?.touched"
+                            class="text-danger">L'email est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+                        <input type="password" formControlName="password" class="form-control"
+                            id="exampleInputPassword1" placeholder="Veuillez entrer votre mot de passe">
+                        <small *ngIf="formValue.get('password')?.invalid && formValue.get('password')?.touched"
+                            class="text-danger">Le mot de passe est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Role</label>
+                        <select formControlName="role" class="form-select" id="role">
+                            <option value="" disabled selected>Choisir votre rôle</option>
+                            <option value="ADMIN">Admin</option>
+                            <option value="SALARIE">Salarié</option>
+                        </select>
+                        <small *ngIf="formValue.get('role')?.invalid && formValue.get('role')?.touched"
+                            class="text-danger">Le rôle est obligatoire</small>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="showAdd" type="button" class="btn btn-primary" (click)="addSalarie()">Ajouter</button>
+                <button *ngIf="showUpdate" type="button" class="btn btn-warning"
+                    (click)="editSalarie()">Modifier</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="doSomething()">Annuler</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-dashboard></app-dashboard>

@@ -1,0 +1,70 @@
+<div class="main-container">
+    <div class="pd-ltr-20">
+        <!--Welcome-->
+        <div class="card-box pd-20 height-100-p mb-30">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="assets/vendors/images/banner-img.png" alt="">
+                </div>
+                <div class="col-md-8">
+                    <h4 class="font-20 weight-500 mb-10 text-capitalize">
+                        <strong>Bienvenue</strong>
+                        <div class="weight-600 font-30 text-blue"></div>
+                    </h4>
+                    <p class="font-18 max-width-600"><cite>vous souhaitons la bienvenue sur notre plateforme de
+                            gestion des congés en ligne ! Profitez de notre interface conviviale et de nos
+                            fonctionnalités avancées pour organiser facilement vos congés et optimiser votre
+                            planning.</cite> </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-sm-12 col-md-4 mb-30">
+                <div class="card card-box">
+                    <div class="card-header">
+                        <strong>Liste des congés refusés</strong>
+                    </div>
+                    <div class="card-body">terminer
+                        <blockquote class="blockquote mb-0">
+                            <p>Pouvez-vous me fournir une liste de personnes à qui un congé a été refusé cette semaine ?</p><br>
+                            <footer class="blockquote-footer"><button type="button" class="btn btn-outline-primary" [routerLink]="['/refuser']">
+                                    Voir </button></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 mb-30">
+                <div class="card card-box">
+                    <div class="card-header">
+                        <strong>Jours fériés a venir </strong>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>Afin d'obtenir les informations sur les prochains jours fériés, vous pouvez consulter
+                                le calendrier.</p><br>
+                            <footer class="blockquote-footer"><button type="button" class="btn btn-outline-primary" [routerLink]="['/calendrier']">
+                                    Afficher </button></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 mb-30">
+                <div class="card card-box">
+                    <div class="card-header">
+                        <strong>Tâches en attente</strong>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>Il y a une évaluation en attente qui nécessite votre attention.</p><br>
+                            <footer class="blockquote-footer"><button type="button" class="btn btn-outline-primary" [routerLink]="['/en-cours']">
+                                    Consulter</button></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-dashboard></app-dashboard>

@@ -1,0 +1,243 @@
+<html>
+
+<head>
+    <!-- Basic Page Info -->
+    <meta charset="utf-8">
+    <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">sw
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-119386393-1');
+    </script>
+   <style>
+  .icon-cell {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100px; /* Adjust the width as needed */
+    }
+
+    .icon-cell .icon {
+        font-size: 24px;
+        transition: color 0.3s ease;
+        margin: 0 5px; /* Adjust margin as needed */
+    }
+
+    .icon-cell .dw-eye {
+        color: #3498db; /* Color for "dw-eye" icon */
+    }
+
+    .icon-cell .fa-check {
+        color: green; /* Color for "fa-check" icon */
+    }
+
+    .icon-cell .fa-times-circle {
+        color: red; /* Color for "fa-times-circle" icon */
+    }
+
+    .icon-cell .icon:hover {
+        color: #2980b9; /* Hover color for icons */
+    }
+   </style> 
+   
+</head>
+
+<body>
+    <div class="pre-loader">
+        <div class="pre-loader-box">
+            <div class="loader-logo"><img src="assets/vendors/images/deskapp-logo.svg" alt=""></div>
+            <div class='loader-progress' id="progress_div">
+                <div class='bar' id='bar1'></div>
+            </div>
+            <div class='percent' id='percent1'>0%</div>
+            <div class="loading-text">
+                Loading...
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Liste des demandes</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 class="text-blue h4"><strong>Tableau des demandes</strong></h4>
+                    </div>
+                    <div _ngcontent-ng-c2380787436="" class="pb-20">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                            <div id="DataTables_Table_0_filter" class="dataTables_filter with-spacing">
+                                <label>
+                                    <input type="search" class="form-control form-control-sm" placeholder="Rechercher"
+                                        aria-controls="DataTables_Table_0" [(ngModel)]="searchText">
+                                </label>
+                                <br>
+                            </div>
+                            <table class="data-table table stripe hover nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>NomSalarie</th>
+                                        <th>DateDebut</th>
+                                        <th>DateFin</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Etat</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let demande of demandes">
+                                        <td>{{demande.nomSalarie}}</td>
+                                        <td>{{demande.dateDebut}}</td>
+                                        <td>{{demande.dateFin}}</td>
+                                        <td>{{demande.type}}</td>
+                                        <td>{{demande.description}}</td>
+                                        <td>{{demande.etat}}</td>
+                                        <td class="icon-cell"> 
+                                            <i class="icon dw dw-eye" (click)=" openModal2(demande)"></i>
+                                            <i class="icon-copy fa fa-check" style="font-size: 25px;"  (click)="accepter(demande)"></i>
+                                            <i class="icon-copy fa fa-times-circle" style="font-size: 25px;" (click)="refuser(demande)"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                <ul class="pagination">
+                                    <li class="paginate_button page-item previous disabled"
+                                        id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0"
+                                            data-dt-idx="0" tabindex="0" class="page-link"><i
+                                                class="ion-chevron-left"></i></a></li>
+                                    <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a
+                                            href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"
+                                            class="page-link"><i class="ion-chevron-right"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+  <!-- Modal1 -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h1 class="modal-title" id="exampleModalLabel">
+            <strong *ngIf="showAdd">Accepter la demande de congé</strong>
+            <strong *ngIf="showUpdate">Refuser la demande de congé</strong>
+          </h1>
+          <p class="lead mt-3">Voulez-vous continuer avec cette action ?</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button *ngIf="showAdd" type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="validerAction()">Accepter</button>
+          <button *ngIf="showUpdate" type="button" class="btn btn-danger" data-bs-dismiss="modal"(click)="validerAction()">Refuser</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!--Modal2-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLabel"><strong>Détaille du demande</strong></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="doSomething()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nom salarie</label>
+                        <input type="name" formControlName="nomSalarie" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Veuillez saisir votre nom de salarie" readonly>
+                        <small *ngIf="formValue.get('nomSalarie')?.invalid && formValue.get('nomSalarie')?.touched"
+                            class="text-danger">Le nom est obligatoire</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateDebut" class="form-label">Date de debut</label>
+                        <input type="date" formControlName="dateDebut" class="form-control" id="dateDebut"
+                            placeholder="Veuillez entrer la date de debut de congé" readonly>
+                        <small *ngIf="formValue.get('dateDebut')?.invalid && formValue.get('dateDebut')?.touched"
+                            class="text-danger">La date de debut est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="dateFin" class="form-label">Date du fin</label>
+                        <input type="date" formControlName="dateFin" class="form-control" id="dateFin"
+                            placeholder="Veuillez entrer la date de fin de congé" readonly>
+                        <small *ngIf="formValue.get('dateFin')?.invalid && formValue.get('dateFin')?.touched"
+                            class="text-danger">la date du fin est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Type</label>
+                        <input type="type" formControlName="type" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Veuillez entrer votre type de congé" readonly>
+                        <small *ngIf="formValue.get('type')?.invalid && formValue.get('type')?.touched"
+                            class="text-danger">Le type est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Description</label>
+                        <input type="description" formControlName="description" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Veuillez entrer votre description de congé" readonly>
+                        <small *ngIf="formValue.get('description')?.invalid && formValue.get('description')?.touched"
+                            class="text-danger">La description est obligatoire</small>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Etat</label>
+                        <!-- Set the value of etat to "en cours" and make it readonly -->
+                        <input type="etat" formControlName="etat" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="En cours" value="En cours" readonly>
+                        <small *ngIf="formValue.get('etat')?.invalid && formValue.get('etat')?.touched"
+                            class="text-danger"></small>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="doSomething()">Annuler</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-notification></app-notification>
+
+<app-dashboard></app-dashboard>

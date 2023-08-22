@@ -1,0 +1,85 @@
+.text-blue {
+    color: blue;
+}
+
+h4 {
+    color: blue;
+}
+
+.icon-cell {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px; /* Ajustez la largeur selon vos besoins */
+}
+
+.icon {
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.icon.dw-eye {
+    color: #3498db; /* Couleur pour l'icône "dw-eye" */
+}
+
+.icon.dw-edit2 {
+    color: #27ae60; /* Couleur pour l'icône "dw-edit2" */
+}
+
+.icon.dw-delete-3 {
+    color: #e74c3c; /* Couleur pour l'icône "dw-delete-3" */
+}
+
+.icon.dw-eye:hover {
+    color: #2980b9; /* Couleur au survol de l'icône "dw-eye" */
+}
+
+.icon.dw-edit2:hover {
+    color: #27ae60; /* Couleur au survol de l'icône "dw-edit2" */
+}
+
+.icon.dw-delete-3:hover {
+    color: #c0392b; /* Couleur au survol de l'icône "dw-delete-3" */
+}
+/*********************************************/
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.pagination-button {
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.page-info {
+    font-size: 14px;
+    margin: 0 10px;
+    color: #777;
+}
+/* Stylisation générale de la table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+/* Styles pour les cellules d'en-tête */
+thead th {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Styles pour les cellules du corps de la table */
+tbody td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
